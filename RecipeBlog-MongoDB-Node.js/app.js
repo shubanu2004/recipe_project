@@ -6,6 +6,8 @@ const cookieParser = require('cookie-parser');
 const flash = require('connect-flash');
 const bodyParser = require('body-parser');
 const path = require('path');
+
+const cors = require('cors')
 const app = express();
 const port = process.env.PORT || 5000;
 
@@ -21,6 +23,14 @@ app.use(session({
   saveUninitialized: true,
   resave: true
 }));
+
+app.use(cors({
+  origin: [
+      "http://localhost:3000"
+  ],
+  credentials: true
+}))
+
 app.use(flash());
 app.use(fileUpload());
 
